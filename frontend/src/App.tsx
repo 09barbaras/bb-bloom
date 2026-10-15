@@ -1,19 +1,10 @@
-import { Navigate, Route, Routes } from 'react-router'
-import { useAuth } from './auth-context'
-import { BabiesPage } from './pages/BabiesPage'
-import { BabyPage } from './pages/BabyPage'
-import { LoginPage } from './pages/LoginPage'
-
-export default function App() {
-  const { isLoggedIn } = useAuth()
-
-  if (!isLoggedIn) return <LoginPage />
-
+function App() {
   return (
-    <Routes>
-      <Route path="/" element={<BabiesPage />} />
-      <Route path="/babies/:babyId" element={<BabyPage />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <main>
+      <h1>BB Bloom 🍼</h1>
+      <p>A baby tracker for sleeps, feeds, diapers, symptoms and medication.</p>
+    </main>
   )
 }
+
+export default App
