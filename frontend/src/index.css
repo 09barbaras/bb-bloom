@@ -12,3 +12,15 @@ main {
   margin: 0 auto;
   padding: 2rem 1rem;
 }
+
+header {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 0;
+}
+
+header a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+}
