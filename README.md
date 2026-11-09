@@ -87,6 +87,13 @@ To stop: `Ctrl+C` in the backend and frontend tabs. Run `docker compose down` to
 | Before committing (frontend) | `npm run lint && npm run build` | `frontend/` |
 | Want a completely empty database | `docker compose down -v`, then `docker compose up -d --wait` and `uv run alembic upgrade head` (**deletes all data**) | repo root, then `backend/` |
 
+## Frontend layout
+
+- `src/router.tsx`: the list of routes. Add new pages here.
+- `src/pages/`: one component per screen. `src/components/`: shared pieces such as the layout.
+- `src/api/client.ts`: `api.get` / `api.post` for every backend call (relative `/api/...` URLs, errors become `ApiError`).
+- `src/api/*.ts`: one hook per endpoint, built on TanStack Query (see `health.ts`).
+
 ## Continuous integration
 
 GitHub Actions ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs on every pull request and every push to `main`:
