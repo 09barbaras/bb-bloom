@@ -23,6 +23,13 @@ uv run fastapi dev app/main.py
 ```
 
 ```bash
+# backend tests and lint
+cd backend
+uv run pytest
+uv run ruff check . && uv run ruff format .
+```
+
+```bash
 # frontend → http://localhost:5173
 cd frontend
 npm install
