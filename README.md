@@ -87,6 +87,15 @@ To stop: `Ctrl+C` in the backend and frontend tabs. Run `docker compose down` to
 | Before committing (frontend) | `npm run lint && npm run build` | `frontend/` |
 | Want a completely empty database | `docker compose down -v`, then `docker compose up -d --wait` and `uv run alembic upgrade head` (**deletes all data**) | repo root, then `backend/` |
 
+## Continuous integration
+
+GitHub Actions ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs on every pull request and every push to `main`:
+
+- **backend:** Ruff lint and format check, `alembic upgrade head` and `pytest`, against a throwaway Postgres.
+- **frontend:** `npm run lint` and `npm run build`.
+
+These are the same commands as the "before committing" rows above, so if they pass locally they should pass in CI.
+
 ## Troubleshooting
 
 - **`API: unreachable` on the page:** the backend isn't running. Start it in its own tab.
