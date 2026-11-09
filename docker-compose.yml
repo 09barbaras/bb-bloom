@@ -1,0 +1,25 @@
+# Local development database only. The API and frontend run on the host (see README).
+#   docker compose up -d   start Postgres in the background
+#   docker compose down    stop it (data is kept in the `pgdata` volume)
+#   docker compose down -v stop it and delete all data
+
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bb_bloom
+    ports:
+      - "127.0.0.1:5432:5432" # only reachable from this machine
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./docker/create-test-db.sql:/docker-entrypoint-initdb.d/create-test-db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d bb_bloom"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  pgdata:

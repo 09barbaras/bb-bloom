@@ -7,7 +7,13 @@ A baby tracker for sleeps, feeds, diapers, symptoms and medication, shared betwe
 
 ## Running locally
 
-Install the tools once: `brew install uv node`
+Install the tools once: `brew install uv node`, plus [Docker Desktop](https://www.docker.com/products/docker-desktop/) for the database.
+
+```bash
+# database → localhost:5432 (user/password postgres, databases bb_bloom and bb_bloom_test)
+docker compose up -d
+cp backend/.env.example backend/.env   # first time only
+```
 
 ```bash
 # backend → http://localhost:8000/docs
